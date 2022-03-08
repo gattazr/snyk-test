@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const si = require('systeminformation');
+  si.versions({toString : () => { console.log("This is a Code injection as well") }});
+
   return (
     <div className="App">
       <header className="App-header">
