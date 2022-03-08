@@ -1,9 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { versions } from 'systeminformation';
+
+const getQuery = () => {
+  if (typeof window !== 'undefined') {
+    return new URLSearchParams(window.location.search);
+  }
+  return new URLSearchParams();
+};
 
 function App() {
-  const si = require('systeminformation');
-  si.versions({toString : () => { console.log("This is a Code injection as well") }});
+  const versionName = getQuery().get('version');
+    versions({
+    toString: () => { console.log(versionName) }
+  });
 
   return (
     <div className="App">
@@ -21,6 +31,11 @@ function App() {
           Learn React
         </a>
       </header>
+      <div>
+        <p>
+          {versionName}
+        </p>
+      </div>
     </div>
   );
 }
